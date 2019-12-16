@@ -38,11 +38,15 @@ header {
 
 header .logo {
     float: left;
-    height: 55px;
-    width: auto;
+    width: 243px;
+    height: 65px;
     margin-top: 12px;
 }
-
+.bg-logo {
+    width: 243px;
+    height: 65px;
+    background: url('../img/css_sprites.webp') -185px -10px;
+}
 header .phone {
     display: block;
     text-align: right;
@@ -73,11 +77,10 @@ header .phone {
 }
 
 .price {
-    background-image: url("../img/price-bg.webp");
+    background-image: url("../img/css_sprites.webp");
+    width: 155px; height: 156px;
+    background-position:-10px -10px;
     background-repeat: no-repeat;
-    background-size: 100%;
-    width: 120px;
-    height: 120px;
     font-size: 18px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -334,7 +337,7 @@ button {
 
 .reasons .reason .square {
     text-align: center;
-    height: 70px;
+    height:57px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -345,31 +348,39 @@ button {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    align-items:flex-end;
+    margin-bottom:13px;
 }
-
-.reasons .reason .square img {
-    width: 45px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+.reasons .reason .square .width60 {
+    margin:0 auto;
+    margin-top:auto;
 }
-
-.reasons .reason .square img.width60 {
-    width: 60px;
+.bg-reason1 {
+    width: 55px;
+    height: 34px;
+    background: url('../img/css_sprites.webp') -208px -186px;
 }
-
-.reasons .reason .square img.width35 {
-    width: 35px;
+.bg-reason2 {
+    width: 45px; 
+    height: 45px;
+    background: url('../img/css_sprites.webp') -78px -186px;
 }
-
+.bg-reason3 {
+    width: 39px;
+    height: 57px;
+    background: url('../img/css_sprites.webp') -10px -254px;
+}
+.bg-reason4 {
+    width: 48px; 
+    height: 48px;
+    background: url('../img/css_sprites.webp') -10px -186px;
+}
 .video {
     margin-top: 30px;
 }
-
 .video .h2 {
     margin-bottom: 50px;
 }
-
 .video #video {
     max-width: 800px;
     width: 100%;
@@ -378,7 +389,6 @@ button {
     border: 10px solid #ffdc00;
     display: block;
 }
-
 .how {
     text-align: center;
     font-size: 0;
@@ -427,9 +437,7 @@ button {
     padding-left:60px;
     padding-right:60px;
     box-sizing:border-box;
-
 }
-
 .reviews .review-text {
     display: inline-block;
     width: calc(68% - 30px);
@@ -453,6 +461,11 @@ button {
     align-items:center;
     margin-top:15px;
     padding-right:25px;
+}
+.bg-review1_ava {
+    width: 45px; 
+    height: 45px;
+    background: url('../img/css_sprites.webp') -143px -186px;
 }
 .review-box-author-photo{
     margin-right:15px
@@ -480,10 +493,10 @@ button {
     width: 23px;
     height: 62px;
     background-color:transparent;
-    background-image:url(../img/arrow-right.webp);
     background-repeat: no-repeat;
     background-size: cover;
     cursor:pointer;
+    background: url('../img/css_sprites.webp') -53px -331px;
 }
 .review-slider .slick-next,
 .review-slider .slick-prev{
@@ -567,12 +580,28 @@ button {
     font-family: "HelveticaNeueBold";
     font-size: 18px;
 }
-
+.bg-adv1 {
+    width: 55px; 
+    height: 60px;
+    background: url('../img/css_sprites.webp') -185px -95px;
+}
+.bg-adv2 {
+    width: 55px; 
+    height: 60px;
+    background: url('../img/css_sprites.webp') -260px -95px;
+}
+.bg-adv3 {
+    width: 60px; 
+    height: 54px;
+    background: url('../img/css_sprites.webp') -335px -95px;
+}
+.adv-icon{
+    margin:0 auto;
+}
 .last-screen {
     clear: both;
     text-align: center;
 }
-
 .last-screen .wrapper {
     height: auto;
     min-height: 1px !important;
@@ -616,10 +645,4 @@ form input {
     width: 250px;
     display: block;
     margin: 0 auto 30px;
-}
-
-footer {
-    margin-top: 100px;
-    background-color: #333;
-    height: 50px;
 }
