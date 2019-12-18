@@ -7,7 +7,7 @@
 	<title>Title</title>
 	<link rel="stylesheet" href="css/screen.css">
 	<link rel="stylesheet" href="css/fonts.css">
-	<link rel="stylesheet" href="css/main.min.css">
+	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="./css/slick.css">
 </head>
 
@@ -146,7 +146,10 @@
 	<section class="video">
 		<div class="wrapper">
 			<h2 class="h2">как работает <span class="yellow">видеопарктроник?</span></h2>
-			<div id="video"></div>
+			<div class="video-inner">
+				<div class="youtube" id="M7lc1UVf-VE"></div>
+
+			</div>
 		</div>
 	</section>
 	<section class="how">
@@ -329,35 +332,45 @@
 				dots: true,
 			});
 		})
-		var tag = document.createElement('script');
-		tag.src = "https://www.youtube.com/iframe_api";
-		var firstScriptTag = document.getElementsByTagName('script')[0];
-		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-		var player;
-		function onYouTubeIframeAPIReady() {
-			player = new YT.Player('video', {
-				height: '390',
-				width: '640',
-				videoId: 'M7lc1UVf-VE',
-				events: {
-					'onReady': onPlayerReady,
-					'onStateChange': onPlayerStateChange
+		function r(f) { /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f() }
+		r(function () {
+			if (!document.getElementsByClassName) {
+				// Поддержка IE8
+				var getElementsByClassName = function (node, classname) {
+					var a = [];
+					var re = new RegExp('(^| )' + classname + '( |$)');
+					var els = node.getElementsByTagName("*");
+					for (var i = 0, j = els.length; i < j; i++)
+						if (re.test(els[i].className)) a.push(els[i]);
+					return a;
 				}
-			});
-		}
-		function onPlayerReady(event) {
-			event.target.playVideo();
-		}
-		var done = false;
-		function onPlayerStateChange(event) {
-			if (event.data == YT.PlayerState.PLAYING && !done) {
-				setTimeout(stopVideo, 6000);
-				done = true;
+				var videos = getElementsByClassName(document.body, "youtube");
+			} else {
+				var videos = document.getElementsByClassName("youtube");
 			}
-		}
-		function stopVideo() {
-			player.stopVideo();
-		}
+			var nb_videos = videos.length;
+			for (var i = 0; i < nb_videos; i++) {
+				// Находим постер для видео, зная ID нашего видео
+				videos[i].style.backgroundImage = 'url(http://i.ytimg.com/vi/' + videos[i].id + '/sddefault.jpg)';
+				// Размещаем над постером кнопку Play, чтобы создать эффект плеера
+				var play = document.createElement("div");
+				play.setAttribute("class", "play");
+				videos[i].appendChild(play);
+				videos[i].onclick = function () {
+					// Создаем iFrame и сразу начинаем проигрывать видео, т.е. атрибут autoplay у видео в значении 1
+					var iframe = document.createElement("iframe");
+					var iframe_url = "https://www.youtube.com/embed/" + this.id + "?autoplay=1&autohide=1";
+					if (this.getAttribute("data-params")) iframe_url += '&' + this.getAttribute("data-params");
+					iframe.setAttribute("src", iframe_url);
+					iframe.setAttribute("frameborder", '0');
+					// Высота и ширина iFrame будет как у элемента-родителя
+					iframe.width = "680";
+					iframe.height = "380";
+					// Заменяем начальное изображение (постер) на iFrame
+					this.parentNode.replaceChild(iframe, this);
+				}
+			}
+		});
 	</script>
 </body>
 
